@@ -1,6 +1,5 @@
 #coding=utf-8
 import re  # 正则表达式
-import bs4  # Beautiful Soup 4 解析模块
 import WaterData
 import urllib2  # 网络访问模块
 import codecs  #解决编码问题的关键 ，使用codecs.open打开文件
@@ -52,12 +51,6 @@ def parse_data(state_info):
 
         print data_list
 
-
-def parse_station_info(station_info):
-    info_str=station_info.split('"')[5]
-    info_list=info_str.split("!!")
-    for single_station in info_list:
-        print single_station
 
 # 获取html数据
 def get_data(home):
