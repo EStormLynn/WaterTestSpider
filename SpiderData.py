@@ -2,6 +2,7 @@
 import re  # 正则表达式
 import WaterData
 import urllib2  # 网络访问模块
+import time
 import codecs  #解决编码问题的关键 ，使用codecs.open打开文件
 import sys   #1解决不同页面编码问题
 
@@ -52,6 +53,12 @@ def parse_data(state_info):
         print data_list
 
 
+def parse_station_info(station_info):
+    info_str=station_info.split('"')[5]
+    info_list=info_str.split("!!")
+    for single_station in info_list:
+        print single_station
+
 # 获取html数据
 def get_data(home):
     request = urllib2.Request(home)
@@ -95,9 +102,19 @@ if __name__ == '__main__':
     StateCount = 0
 
     home = 'http://online.watertest.com.cn/'  # 起始位置
-    file=open("test.csv","a+") #文件操作
-    file.write("ID,地址,日期,时间,PH,级别,溶解氧,级别,氨氮,级别,高锰酸盐指数,级别\n")
 
-    get_data(home)
-    print "总共"+str(StateCount)+"条数据"
-    file.close()
+    # 时间间隔单位s
+    time_i=60
+
+    while 1:
+        time_str=time.strftime('%Y-%m-%d %H.%M',time.localtime(time.time()))+".csv"
+        print time_str
+        file = open(time_str, "a+")  # 文件操作
+        file.write("ID,地址,日期,时间,PH,级别,溶解氧,级别,氨氮,级别,高锰酸盐指数,级别\n")
+
+        get_data(home)
+        print time_str+"总共" + str(StateCount) + "条数据"
+        file.close()
+        time.sleep(time_i)
+
+
