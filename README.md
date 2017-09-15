@@ -8,6 +8,7 @@
 * 创建地址Dict，记录观测值地理位置
 * 设计WaterTest类，记录水质测量信息(包括:时间、ph值、溶解氧、氨氮、高锰酸盐指数等)
 * 写入csv文件，统计数据总量
+* 隔时段定时爬取水质数据
 
 ## 记录数据
 ![](http://oo8jzybo8.bkt.clouddn.com/%E6%B0%B4%E8%B4%A8%E6%95%B0%E6%8D%AEcsv.png)
